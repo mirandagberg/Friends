@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="container straighten">
+    <div id="popup">
+        <div class="marker" id="closet"></div>
+        <div class="marker" id="couch"></div>
+        <div class="marker" id="balcony"></div>
+        <div class="marker" id="chair"></div>
+        <div class="marker" id="tv"></div>
+        <img src="http://i68.tinypic.com/2wly6c4.jpg" />
+    </div>
+</div>
+
+<div class="textbox">
+    <div class="popuptitle">Friends</div>
+    Follow the lives of six twenty-somethings living in New York City.
+    <br>
+    <br>Many things happened in this apartment, some worth noting more than others. 
+    <br>
+    <br>Click on a piece of furniture or a structure to see its significance.
+</div>
+
+<style>
+.textbox {
+	display: inline-block;
+    position: absolute;
+    width: 30%;
+    padding: 20px;
+    vertical-align: top;
+    background-color: #eee;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.5em;
+}
+.container{
+    width: 60%;
+    position: relative;
+    display: inline-block;
+}
+.container img {    
+    width: 100%;
+}
+.marker{
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: none;
+    border: 3px solid white;
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
+.marker:hover {
+    background-color: #0B7ACF;
+}
+#closet {
+    top:23%;
+    left: 24%;
+}
+#couch {
+    top:50%;
+    left: 15%;
+}
+#balcony {
+    top: 20%;
+    right: 52%;
+}
+#chair {
+    top:41%;
+    left: 45%;
+}
+#tv {
+    top:32%;
+    left: 81%;
+}
+.popuptitle {
+    color: #0B7ACF;
+    font-family:'Roboto', Arial, sans-serif;
+    letter-spacing: 0.01em;
+    font-size:22px; 
+    font-weight:700;
+    clear:both;
+}
+#popup {
+	position:relative;
+}
+.hoverbox {
+	position:absolute;
+	background-color:#fff;
+	padding:0.5em;
+	box-shadow: 1px 1px 8px rgba(0,0,0,0.4);
+}
+</style>
+
+<script>
+$(document).ready(function(){
+
+var data =
+[{"id":"closet","name":"Closet","description":'<b>The One With The Secret Closet, S8E14:</b> Monica has a secret locked closet that hides her mess that she did not want anyone to find out about.<iframe width="420" height="315" src="https://www.youtube.com/embed/R4VCrlWyXbQ?start=0&end=73&version=3" frameborder="0" allowfullscreen></iframe>'},
+{"id":"couch","name":"Couch","description":'<b>The One With The Flashback, S3E6:</b> In a flashback, Phoebe decides to move out of the apartment because Monica is so high strung when it comes to keeping the place clean, and stains off the couch. <iframe width="420" height="315" src="https://www.youtube.com/embed/oyspFO7o-6g?start=65&end=101&version=3" frameborder="0" allowfullscreen></iframe>'},
+{"id":"balcony","name":"Balcony","description":'<b>The One With The Giant Poking Device, S3E8:</b> When the Friends think "Ugly Naked Guy" is dead, they devise a plan to make a poking device out of takeout chopsticks to see if he is alive.<iframe width="420" height="315" src="https://www.youtube.com/embed/f9SvhfmvesA?start=76&end=133&version=3" frameborder="0" allowfullscreen></iframe>'},
+{"id":"chair","name":"Chair","description":'<b>TOW No One Is Ready, S3E2:</b> When Joey sits in the chair Chandler was sitting it, they argue back and forth over who should sit in the chair.<iframe width="420" height="315" src="https://www.youtube.com/embed/ddvMaU6kxW0?start=66&end=100&version=3" frameborder="0" allowfullscreen></iframe>'},
+{"id":"tv","name":"TV","description":'<b>The One With The Free Porn, S4E17:</b> Chandler and Joey discover that they are getting a free porn channel on their TV, which leads to them never turning their TV off. <iframe width="420" height="315" src="https://www.youtube.com/embed/L8y_XELbssc?start=86&end=120&version=3" frameborder="0" allowfullscreen></iframe>'}];
+
+$('.marker').click(function(e) {
+	$('.textbox').empty();
+	for (var i = 0; i < data.length; i++) {
+		if (this.id == data[i].id) {
+			$('.textbox').append('<div class="popuptitle">' + data[i].name + '</div>' + data[i].description);
+		}//if
+	}//for
+});//click marker
+
+
+var pos, thex, they;
+
+$('.marker').mouseover(function(e) {
+	
+	pos = $('#popup').offset()
+	thex = event.pageX - pos.left + 10;
+	they = event.pageY - pos.top + 0;
+	
+	if (thex > $('#popup').width() - 150) { thex = $('#popup').width() - 150 };
+	if (they > $('#popup').height() - 100) { they = $('#popup').height() - 100 };
+	
+	for (var i = 0; i < data.length; i++) {
+	}//for
+	
+	
+});//mouseover
+
+$('.marker').mouseleave(function(){
+	$('.hoverbox').remove()
+	
+});//mouseleave
+
+});//docready
+</script>
+
+</body>
+</html>
